@@ -6,38 +6,16 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Post-Message</title>
-    <style>
-        .post-view {
-            background: cadetblue;
-            color: #fff;
-            padding: 100px;
-            border-radius: 6px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, .5);
-            cursor: pointer;
-        }
-        button {
-            border: 1px solid #409eff;
-            cursor: pointer;
-            padding: 10px 14px;
-            outline: none;
-            border-radius: 4px;
-            color: #ffffff;
-            background: #409eff;
-            transition: all .5s;
-        }
-        button:hover, button:active {
-            opacity: .9;
-            box-shadow: 0 0 10px #eee;
-        }
-    </style>
+    <link rel="shortcut icon" href="https://qiniu.wangxiaoze.wang/hexo-blog/wechat_au.jpeg">
+    <link rel="stylesheet" href="./index.css" >
 </head>
 <body>
-    <div class="post-view">
-        <button id="send-btn">发送消息管道</button>
-        <p id="post-message--tip">消息管道初始化...</p>
-    </div>
+<div class="post-view">
+    <button id="send-btn">发送消息管道</button>
+    <p id="post-message--tip">消息管道初始化...</p>
+</div>
 </body>
-<script src="../js/utils.js"></script>
+<script src="../../js/utils.js"></script>
 <script src="channel.js"></script>
 <script>
     // 初始化消息管道
@@ -52,7 +30,7 @@
     utils.getEle('#send-btn').addEventListener('click', function (e) {
         // 首次打开新标签
         if (channel.listeners.size === 0) {
-            window.open(`./post-message-child.html?name=${e.target.innerText}`, "_blank");
+            window.open(`./child.html?name=${e.target.innerText}`, "_blank");
         } else {
             // 在原有的标签页的基础上发送消息
             channel.postMessage({

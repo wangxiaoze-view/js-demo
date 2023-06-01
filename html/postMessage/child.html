@@ -5,31 +5,23 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-      .post-view {
-        background: cadetblue;
-        color: #fff;
-        padding: 100px;
-        border-radius: 6px;
-        box-shadow: 0 0 20px rgba(0, 0, 0, .5);
-        cursor: pointer;
-      }
-    </style>
+    <title>Post-Message-Child</title>
+    <link rel="shortcut icon" href="https://qiniu.wangxiaoze.wang/hexo-blog/wechat_au.jpeg">
+    <link rel="stylesheet" href="./index.css" >
 </head>
 <body>
     <div class="post-view">
       <h1>与传播页面通信</h1>
     </div>
 </body>
-<script src="../js/utils.js"></script>
+<script src="../../js/utils.js"></script>
 <script src="channel.js"></script>
 <script>
     // 初始化消息管道
     const channel = createdChannels("test-open");
     // 接受消息
     channel.addEventListener("message", function (e) {
-      document.querySelector("h1").innerHTML = "接收值：" + e.data.message;
+        document.querySelector("h1").innerHTML = "接收值：" + e.data.message;
     });
 </script>
 </html>
