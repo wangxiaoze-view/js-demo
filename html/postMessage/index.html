@@ -30,7 +30,7 @@
     utils.getEle('#send-btn').addEventListener('click', function (e) {
         // 首次打开新标签
         if (channel.listeners.size === 0) {
-            window.open(`./child.html?name=${e.target.innerText}`, "_blank");
+            window.open(`/html/postMessage/child.html?name=${e.target.innerText}`, "_blank");
         } else {
             // 在原有的标签页的基础上发送消息
             channel.postMessage({
