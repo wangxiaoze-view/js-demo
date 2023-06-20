@@ -28,6 +28,19 @@ class Utils {
         })
 
     }
+
+    downFile(url, name) {
+        const _this = this
+        const a = document.createElement('a')
+        a.href = url;
+        a.target = '_blank'
+        a.download = name
+        a.style.display = 'none';
+        document.querySelector('body')
+        _this.getEle('body').append(a)
+        a.click()
+        a.remove()
+    }
 }
 
 const utils = new Utils();

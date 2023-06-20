@@ -23,6 +23,14 @@
     color: #ff0000;
     font-size: 20px;
 }
+
+code {
+    background: #f78989;
+    color: #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
 * {
     user-select: none;
 }
