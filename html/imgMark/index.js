@@ -59,10 +59,6 @@ class Var extends Utils {
         return this.getEle(".view-container--right");
     }
 
-    get getLayerMove() {
-        return this.getEle(".layer-item--right", true);
-    }
-
     // 左侧tabs
     get getTabsItems() {
         return this.getEle(".tabs-item", true);
@@ -93,15 +89,15 @@ class Var extends Utils {
     layerMove() {
         const _this = this;
         const layerDom = _this.getEle(".view-container--right");
-        const imgs = _this.getEle(".center-right img", true);
 
         // 拖拽开始 记录当前拖拽的元素
         layerDom.addEventListener("dragstart", function (e) {
             e.dataTransfer.setData("Text", e.target);
             _this.dragging = e.target;
+            const images = _this.getEle(".center-right img", true);
             const index = e.target.getAttribute("data-zIndex");
             if (index) {
-                _this.draggingImg = imgs[Number(index)];
+                _this.draggingImg = images[Number(index)];
             }
         });
 
@@ -113,7 +109,7 @@ class Var extends Utils {
         layerDom.addEventListener("dragover", function (e) {
             e.preventDefault();
             const target = e.target;
-            const imgs = _this.getEle(".center-right img", true);
+            const images = _this.getEle(".center-right img", true);
 
             // 底图不允许拖拽
 
@@ -131,28 +127,28 @@ class Var extends Utils {
                         target.nextElementSibling
                     );
 
-                    imgs[nowIndex].parentNode.insertBefore(
+                    images[nowIndex].parentNode.insertBefore(
                         _this.draggingImg,
-                        imgs[nowIndex].nextElementSibling
+                        images[nowIndex].nextElementSibling
                     );
                 } else {
                     // 下至上
                     target.parentNode.insertBefore(_this.dragging, target);
-                    imgs[nowIndex].parentNode.insertBefore(
+                    images[nowIndex].parentNode.insertBefore(
                         _this.draggingImg,
-                        imgs[nowIndex]
+                        images[nowIndex]
                     );
                 }
             }
         });
 
         // 拖拽结束
-        layerDom.addEventListener("dragend", function (e) {
+        layerDom.addEventListener("dragend", function () {
             const items = _this.getEle(".layer-item", true);
-            const imgs = _this.getEle(".center-right img", true);
+            const images = _this.getEle(".center-right img", true);
             for (let i = 0; i < items.length; i++) {
                 items[i].setAttribute("data-zIndex", i);
-                imgs[i].style.zIndex = i.toString();
+                images[i].style.zIndex = i.toString();
             }
         });
     }
@@ -162,14 +158,15 @@ class Var extends Utils {
         if (!data) return;
         const div = document.createElement("li");
         div.classList.add("layer-item");
-        div.setAttribute("draggable", data.zIndex !== 0 ? 'true' : 'false');
+        div.setAttribute("draggable", 'true');
+
         div.setAttribute("data-zIndex", data.zIndex);
         div.innerHTML =
             '<div class="layer-item--left">' +
             `<div class="layer-title" title="${data.name}">${data.name}</div>` +
             `<span class="layer-tip">蒙层${data.zIndex}</span>` +
             "</div>" +
-            (data.zIndex !== 0 ? '<div class="layer-item--right" ></div>' : "");
+            '<div class="layer-item--right" ></div>';
 
         this.getContainerRight.append(div);
         this.layerData.push(data);
