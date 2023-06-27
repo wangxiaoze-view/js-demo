@@ -1,0 +1,12 @@
+blockquote {
+    margin: 0;
+    background: #d1edc4;
+    padding: 14px;
+    border-left: 4px solid #535bf2;
+}
+code {
+    background: #f78989;
+    color: #fff;
+    padding: 2px 4px;
+    border-radius: 4px;
+}

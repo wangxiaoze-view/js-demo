@@ -2,11 +2,10 @@ class Utils {
     constructor() {
     }
 
-    getEle(name, all = false) {
-        if (!name) {
-            throw new Error('元素 el-name 不能为空~');
-        }
-        return !all ? document.querySelector(name) : document.querySelectorAll(name);
+    getEle(name, all = false, target = document) {
+        if (!name) throw new Error('元素 el-name 不能为空~');
+        if (!target) throw new Error('元素 target 不能为空~');
+        return target[!all ? 'querySelector' : 'querySelectorAll'](name)
     }
 
     trim(str) {
